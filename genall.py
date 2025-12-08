@@ -29,6 +29,8 @@ def transform(p: Page):
                 w.p({}, [w.Content(active or "")]),
             ],
         ),
+        w.div({"class": '"bg"', "id": '"bg1"'}, [w.Content(" ")]),
+        w.div({"class": '"bg"', "id": '"bg2"'}, [w.Content(" ")]),
         w.inp({"type": '"checkbox"', "id": '"expand-toggle"'}),
         w.span(
             {"class": '"triangle"'}, [w.Content(" ")]
