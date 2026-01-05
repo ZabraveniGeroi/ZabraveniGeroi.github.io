@@ -70,7 +70,9 @@ details = Token("///")
 exp = Token("//")
 br = Token("\\n")
 attr = Token("attr")
-url = Token("url(")
+# FIXME: the [] is a hack because im too lazy to fix this
+url = Token("url[")
+uclose = Token("]")
 img = Token("img(")
 close = Token(")")
 idStart = Token("{")
@@ -152,7 +154,8 @@ simpleTok(fishl, "&lt;-|")  # <-|
 simpleTok(fishr, "|-&gt;")  # |->
 simpleTok(attr, "-attr:")
 simpleTok(le, "-")
-simpleTok(url, "url(")
+simpleTok(url, "url[")
+simpleTok(uclose, "]")
 simpleTok(img, "img(")
 simpleTok(close, ")")
 simpleTok(idStart, "{")
@@ -597,12 +600,13 @@ def scissors(page, _1, cont, _2):
     )
 
 
-@rule(All(Is(url), Until(close)))
+@rule(All(Is(url), Until(uclose)))
 def _url(page, _1, cont):
     cont, _ = cont
     outs = [a for a in tostr(cont).split(",")]
     path = outs[0]
     cont = ",".join(outs[1:])
+    print(cont)
     args = {"href": f'"{path}"'}
     return w.a(args, [_md2html(cont, page)])
 
