@@ -561,7 +561,8 @@ def _img(page, _1, cont):
     text = None
     path = outs[0]
     if len(outs) >= 2:
-        text = ",".join(outs[1:])
+        text = ",".join(outs[1:]).replace("\\", "")
+    print(text)
     args = {"src": f'"{path}"', "loading": '"lazy"'}
     if text:
         # https://stackoverflow.com/a/26290604
