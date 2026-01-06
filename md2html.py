@@ -562,7 +562,6 @@ def _img(page, _1, cont):
     path = outs[0]
     if len(outs) >= 2:
         text = ",".join(outs[1:]).replace("\\", "")
-    print(text)
     args = {"src": f'"{path}"', "loading": '"lazy"'}
     if text:
         # https://stackoverflow.com/a/26290604
@@ -607,7 +606,6 @@ def _url(page, _1, cont):
     outs = [a for a in tostr(cont).split(",")]
     path = outs[0]
     cont = ",".join(outs[1:])
-    print(cont)
     args = {"href": f'"{path}"'}
     return w.a(args, [_md2html(cont, page)])
 
@@ -721,7 +719,7 @@ def vertical(page, _, data):
         fbox.children.append(
             w.div(
                 {
-                    "style": f"'max-width:min(100%, max(min(50em, {round(100 / len(parts), 3)}%), 10em))'"
+                    "style": f"'max-width:min(100%, max(min(50em, {round(100 / len(parts), 3)}%), 10em)); padding:.25em;'"
                 },
                 [*body.children, w.br()],
             )
