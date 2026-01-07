@@ -1,3 +1,6 @@
+-attr: title = Константин Величков
+-attr: _metaauthor = Maxi
+-attr: _metakeywords = История, Биография, Константин Величков
 # Константин Величков
 
 img(velichkov.png, Константин Величков)

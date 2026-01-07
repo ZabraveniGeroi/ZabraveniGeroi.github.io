@@ -93,6 +93,7 @@ polyline = create("polyline")
 path = create("path")
 inp = create("input")
 lable = create("lable")
+title = create("title")
 
 
 def chart(w, h, data, width, color):

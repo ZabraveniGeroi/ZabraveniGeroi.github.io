@@ -825,7 +825,28 @@ def md2html(cont):
             ),
         ],
     )
+
     page.body = _md2html(cont, page)
+
+    if "title" in page.attrs:
+        page.head.children.append(w.title({}, [w.Content(page.attrs["title"])]))
+
+    page.head.children.extend(
+        [
+            w.meta({"name": f'"{name.removeprefix("_meta")}"', "content": f'"{cont}"'})
+            for name, cont in page.attrs.items()
+            if name.startswith("_meta")
+        ],
+    )
+
+    print(
+        [
+            w.meta({"name": f'"{name.removeprefix("_meta")}"', "content": f'"{cont}"'})
+            for name, cont in page.attrs.items()
+            if name.startswith("_meta")
+        ]
+    )
+    print(page.attrs)
 
     if int(page.attrs.get("toc", "0")):
         page.body = w.Joined([toc(page), page.body])
